@@ -1,0 +1,587 @@
+year=int(input("请输入年份:"))
+if year%400==0:
+    print("{0}是闰年。".format(year) )
+elif year%4==0:
+    if year%100==0:
+        print("{0}不是闰年。".format(year))
+    else:
+        print("{0}是闰年。".format(year))
+elif year%4!=0:
+    print("{0}不是闰年。".format(year))
+year=int(input("请输入年份:"))
+if year%400==0:
+    print("{0}是闰年。".format(year) )
+elif (year%4!=0):print("{0}不是闰年。".format(year))
+elif(year%100==0):print("{0}不是闰年。".format(year) )
+else:print("{0}是闰年。".format(year))
+=================================
+计算1-3+5-7......
+n=int(input("请输入最后的数:") )
+s=1
+sum=0
+i=0
+while(i<=n):
+    if(i%2==1):
+        sum=sum+s*i
+        s=-s
+    i=i+1
+    #else:continue
+print(sum)
+===================
+计算1+1/2+1/3+......
+n=int(input("请输入最后的数:") )
+s=1
+sum=0
+i=1
+while(i<=n):
+   sum=sum+1/i
+   i=i+1
+print(sum)
+===============
+乘法表(上三角):
+for i in range(1,10):
+    s=" "
+    for j in range(1,10):
+        s=s+str.format("{0:1}*{1:1}={2:<2} ",i,j,i*j)
+        if(i==j):
+            print(s)
+            break
+==============================
+import math
+a =int(input("请输入三角形的边A:"))
+b =int(input("请输入三角形的边B:"))
+c =int(input("请输入三角形的边C:"))
+square=0
+circle=0
+print("三角形的三边为:a=%d,b=%d,c=%d"%(a,b,c))
+p=(a+b+c)/2
+if((a+b>c)and(a+c>b)and(b+c>a)):
+    print("这是一个三角形!\n")
+    circle=a+b+c
+    square=math.sqrt(p*(p-a)*(p-b)*(p-c))
+    print("三角形周长=%d,面积=%d"%(circle,square))
+else:
+    print("这三条边不能构成三角形！")
+========================================
+j=0
+for year in range(2000,3000):
+    s=" "
+    if(year%400==0):
+
+        s=s+str.format("{0:<5}",year)
+        print(s,end="")
+        j = j + 1
+        if (j % 18 == 0):
+            print()
+    elif(year%4!=0):continue
+    elif(year%100==0):continue
+    else:
+        s = s + str.format("{0:<5}", year)
+        print(s, end="")
+        j = j + 1
+        if (j % 18 == 0):
+            print()
+==================================================
+斐波那契数列
+def fab(n):
+    n1=1
+    n2=1
+    n3=1
+
+    if(n<1):
+        print("输入有误")
+        return -1
+    while(n-2)>0:
+        n3=n1+n2
+        n1=n2
+        n2=n3
+        n-=1
+
+    return n3
+result=fab(20)
+if result!=-1:
+    print('总共有%d对兔子 '% result)
+=================================
+斐波那契数列（递归）
+def fab(n):
+    if n<1:
+        print("输入有误！")
+        return -1
+    if n==1 or n==2:
+        return 1
+    else:
+        return fab(n-1)+fab(n-2)
+
+result=fab(20)
+if result!=-1:
+    print('总共有%d对兔子 '% result)
+=====================
+#include<iostream>
+using namespace std;
+int main()
+{
+	cout << "fghj"<<endl;
+	return 0;
+}
+==================================
+import random as r
+class fish:
+    def __init__(self):
+        self.x=r.randint(0,10)
+        self.y=r.randint(0,10)
+    def move(self):
+        self.x-=1
+        print("我的位置是:",self.x,self.y)
+
+
+class goldfish(fish):
+    pass
+
+class crap(fish):
+    pass
+class salmon(fish):
+    pass
+
+class shark(fish):
+    def __init__(self):
+        self.hungry=True
+
+    def eat(self):
+        if(self.hungry):
+            print("鱼好吃")
+        else:
+            print("鱼不好吃")
+   =======================
+import time as t
+class mytime():
+    def start(self):
+        self.start = t.localtime()
+        print("计时开始:")
+
+    def stop(self):
+        self.stop = t.localtime()
+        self._calc()
+        print("计时结束!")
+
+    def _calc(self):
+        self.lasted=[]
+        self.prompt = "总共运行了 "
+        for index in range(6):
+            self.lasted.append(self.stop[index]-self.start[index])
+            self.prompt+=str(self.lasted[index])
+        print(self.prompt)    
+=======================================
+#一个爬虫案例
+import urllib.request
+import urllib.parse
+import json
+content = input("请输入您要翻译的:")
+url = 'https://fanyi.youdao.com/translate'
+#url ='https://fanyi.youdao.com/translate_o?smartresult=dict&smartresult=rule'
+data = {}
+
+#data['i']=' I love China'
+data['i']= content
+data['from']= 'AUTO'
+data['to'] =' AUTO'
+data['smartresult'] = 'dict'
+data['client'] = 'fanyideskweb'
+data['salt'] = '16288435687198'
+data['sign'] = '38a25180a7e5476296eb09b83c2f3edd'
+data['lts'] = '1628843568719'
+data['bv'] = '1e1e443479f11585047234d30110a144'
+data['doctype'] = 'json'
+data['version'] = '2.1'
+data['keyfrom'] = ' fanyi.web'
+data['action'] ='FY_BY_CLICKBUTTION'
+
+data =urllib.parse.urlencode(data).encode('utf-8')
+
+response = urllib.request.urlopen(url,data)
+
+html = response.read().decode('utf-8')
+#print(html)
+target = json.loads(html)
+print("翻译结果为:%s"%(target['translateResult'][0][0]['tgt']))
+======================================
+import urllib.request
+import urllib.parse
+import json
+import time
+
+while True:
+    content = input("请输入您要翻译的(输入q!时推出程序):")
+    if content=='q!':
+        break
+    url = 'https://fanyi.youdao.com/translate'
+    #url ='https://fanyi.youdao.com/translate_o?smartresult=dict&smartresult=rule'
+
+    #head= {}
+    #head['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36 Edg/92.0.902.67'
+    #data['i']=' I love China'
+    ...
+    data = {}
+    data['i']= content
+    data['from']= 'AUTO'
+    data['to'] =' AUTO'
+    data['smartresult'] = 'dict'
+    data['client'] = 'fanyideskweb'
+    data['salt'] = '16288435687198'
+    data['sign'] = '38a25180a7e5476296eb09b83c2f3edd'
+    data['lts'] = '1628843568719'
+    data['bv'] = '1e1e443479f11585047234d30110a144'
+    data['doctype'] = 'json'
+    data['version'] = '2.1'
+    data['keyfrom'] = ' fanyi.web'
+    data['action'] ='FY_BY_CLICKBUTTION'
+    data =urllib.parse.urlencode(data).encode('utf-8')
+
+    req= urllib.request.Request(url,data)#如果定义了head,要加“,head”
+    req.add_header('User-Agent','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36 Edg/92.0.902.67')
+    #response = urllib.request.urlopen(url,data)
+    response = urllib.request.urlopen(req)
+
+    html = response.read().decode('utf-8')
+    #print(html)
+    target = json.loads(html)
+    target = target['translateResult'][0][0]['tgt']
+    #print("翻译结果为:%s"%(target['translateResult'][0][0]['tgt']))
+    print(target)
+    time.sleep(5)
+======================================
+import urllib.request
+import random
+
+url = 'http://www.whatismyip.com.tw'
+iplist=['210.45.128.80','jxgltea.hfut.edu.cn:8780']
+proxy_support = urllib.request.ProxyHandler({'http':random.choice(iplist)})
+
+opener = urllib .request.build_opener(proxy_support)
+opener.addheaders = [('User-Agent','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36 Edg/92.0.902.67')]
+urllib.request.install_opener(opener)
+
+response = urllib.request.urlopen (url)
+
+html = response.read().decode('utf-8')
+
+print(html)
+===========================================
+import urllib.request
+import os
+
+def url_open(url):
+    req = urllib.request.Request(url);
+    req.add_header('User-Agent','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36 Edg/92.0.902.73')
+    response = urllib.request.urlopen(req)
+    html = response.read()
+    print(url)
+    return html
+def get_page(url):
+    #response = urllib.request.urlopen(req)
+    html = url_open(url).decode('utf-8')
+
+    a =html.find('current-comment-page')+23
+    b = html.find(']',a)
+    #print(html[a:b])
+    return html[a:b]
+    
+def find_imgs(url):
+    html=url_open(url).decode('utf-8')
+    img_addrs=[]
+
+    a = html.find('img src=')
+    while a!=-1:
+        b = html.find('.jpg',a,a+255)
+        if b!=-1:
+            img_addrs.append(html[a+9:b+4])
+        else:
+            b=a+9
+        a =html.find('img src=',b)
+
+    for each in img_addrs:
+        print(each)
+    #return img_addrs
+def save_imgs(folder, img_addrs):
+    for each in img_addrs:
+        filename = each.split('/')[-1]
+        with open(filename,'wb') as f:
+            img = url_open(each)
+            f.write(img)
+
+
+def download_mm(folder ='ooxx',pages = 10):
+    os.mkdir(folder)
+    os.chdir(folder)
+
+    url = "http://jandan.net/ooxx/"
+    page_num = int(get_page(url))
+
+    for i in range(pages):
+        page_num-=i
+        page_url =url+'MjAyMDAOMTATtMTG'+str(page_num)+'#comments'
+        img_addrs =find_imgs(page_url)
+        save_imgs(folder, img_addrs)
+
+if __name__=='__main__':
+    download_mm()
+=========================================
+import urllib.request
+import os  #用os模块在当前目录下创建文件夹
+
+def url_open(url):
+    req = urllib.request.Request(url)
+    req.add_header('User-Agent',' Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36')
+    response = urllib.request.urlopen(req)
+    html = response.read()
+
+    print(url)
+
+    return html
+
+def get_page(url):
+    #生成一个request对象，因为后面添加header，看起来更像浏览器访问
+    
+    html = url_open(url).decode('utf-8')
+
+    a=html.find('current-comment-page')+23 #current-comment-page往后数23个字符才到页数
+    b=html.find(']',a)
+
+    return html[a:b]
+
+
+def find_imgs(url):
+    html=url_open(url).decode('utf-8')
+    img_addrs=[]
+
+    a=html.find('img src=')
+
+    while a!=-1:
+        b=html.find('.jpg',a,a+255) #a+255是给个结束查找的限定,一个JPG文件所需要的地址不会超过255
+
+        if b != -1:
+            img_addrs.append(html[a+9:b+4]) #+9是略过img src=" +4是加上.jpg
+        else:
+            b=a+9
+
+        a=html.find('img src=',b)
+
+    return img_addrs
+
+
+
+
+def save_img(floder,img_addrs):
+    for each in img_addrs:
+        filename=each.split('/')[-1]
+        with open(filename,'wb') as f:
+            img = url_open(each)
+            f.write(img)
+
+def download_mm(floder='girl',page=10): #下载到文件girl里面，下载前十页
+    os.mkdir(floder)  # 创建文件夹
+    os.chdir(floder) # 改变目录
+
+    url = 'http://jandan.net/ooxx/'  #复制要爬取的url
+    page_num = int(get_page(url))
+
+    for i in range(page):
+        page_num-=i
+        page_url = url + 'MjAyMDA0MTAtMTg'+str(page_num)+'#comments'
+        img_addrs = find_imgs(page_url)# 把页面所有图片的地址保存成一个列表
+        save_img(floder,img_addrs)
+
+if __name__=='__main__':
+    download_mm()
+===========================
+tkinter:
+from tkinter import *
+
+root=Tk()
+
+textLabel = Label(root,text="注意危险!")
+textLabel.pack()
+
+photo = PhotoImage(file = "C:/Users/Administrator/Desktop/warnnig.gif")
+imgLabel = Label(root,image = photo)
+imgLabel.pack()
+
+mainloop()
+==================================
+from tkinter import *
+
+root = Tk()
+photo = PhotoImage(file = "C:/Users/Administrator/Desktop/bg.gif")
+textLabel = Label(root,
+                  text="我是路邦铭",
+                  justify='left',
+                  image = photo,
+                  compound='center',
+                  font = ("华康少女字体",20),
+                  fg = "white")
+textLabel.pack()
+
+
+mainloop()
+=============================
+from tkinter import *
+
+def callback():
+    var.set("最后点击一下!")
+root = Tk()
+frame1= Frame(root)
+frame2 = Frame(root)
+var = StringVar()
+var.set("我是路邦铭！\n再点击一次!")
+textLabel = Label(frame1,
+                  textvariable = var,
+                  justify = 'left')
+textLabel.pack(side = 'left')
+photo = PhotoImage(file = "C:/Users/Administrator/Desktop/warnnig.gif")
+imgLabel = Label(frame1,image = photo)
+imgLabel.pack(side ='right')
+theButton = Button(frame2,text = "我知道了!",command = callback)
+theButton.pack()
+frame1.pack(padx = 10,pady = 10)
+frame2.pack(padx = 10,pady = 10)
+
+mainloop()
+=========================================
+from tkinter import *
+
+root = Tk()
+v =IntVar()
+c = Checkbutton(root,text = "测试一下",variable = v)
+c.pack()
+l = Label(root,textvariable=v)
+l.pack()
+mainloop()
+==========================================
+from tkinter import *
+root = Tk()
+Label(root,text="账号:").grid(row = 0,column=0)
+Label(root,text="密码:").grid(row = 1,column=0)
+
+v1 = StringVar()
+v2 = StringVar()
+
+e1 = Entry(root,textvariable=v1)
+e2 = Entry(root,textvariable=v2,show="*")
+e1.grid(row =0,column=1,padx =10,pady=5)
+e2.grid(row =1,column=1,padx =10,pady=5)
+def show():
+    print("账号：%s"%e1.get())
+    print("密码：%s"%e2.get())
+Button(root,text="获取信息",width=10,command=show)\
+            .grid(row = 3,column =0,sticky =W,padx =10,pady=5)
+Button(root,text="退出",width=10,command=root.quit)\
+            .grid(row = 3,column =1,sticky =E,padx =10,pady=5)
+mainloop()
+==================================
+from tkinter import *
+
+master = Tk()
+frame =Frame(master)
+frame.pack(padx = 10,pady = 10)
+v1 = StringVar()
+v2 = StringVar()
+v3 = StringVar()
+def test(content):
+    return content.isdigit()
+
+testCMD = master.register(test)
+e1 = Entry(frame,width =10,textvariable = v1,validate= "key",\
+           validatecommand=(testCMD,'%P')).grid(row=0,column = 0)
+Label(frame,text="+").grid(row=0,column=1)
+
+e2 = Entry(frame,width =10,textvariable = v2,validate= "key",\
+           validatecommand=(testCMD,'%P')).grid(row=0,column = 2)
+Label(frame,text="=").grid(row=0,column=3)
+
+e3 = Entry(frame,width =10,textvariable = v3,state = "readonly").grid(row=0,column=4)
+
+def calc():
+    result = int(v1.get())+int(v2.get())
+    v3.set(str(result))
+Button(frame,text="计算结果",command = calc).grid(row = 1,column = 2,pady = 5)
+mainloop()
+=================================
+from tkinter import *
+
+import hashlib
+root = Tk()
+text = Text(root,width =30,height=5)
+text.pack()
+text.insert(INSERT,"lu bangming")
+
+def getIndex(text,index):
+    return tuple(map(int,str.split(text.index(index),".")))
+start = "1.0"
+while True:
+    pos = text.search("i",start,stopindex=END)
+    if not pos:
+        break
+    print("找到啦,位置是:",getIndex(text,pos))
+    start = pos+"+1c"
+mainloop()
+==================================
+import math
+a =float  (input("请输入系数a:") )
+b = float (input("请输入系数b：") )
+c = float (input("请输入系数c：") )
+if a==0 and b==0:
+    print("此方程无解！")
+elif a==0 and b!=0:
+    x= -c/b
+    print("此方程的解为:",x)
+elif b*b-4*a*c==0:
+    x1 = x2 =-b/(2*a)
+    print("此方程有两个相等的实数根:",x1)
+elif  b*b-4*a*c>0:
+    x1 = -b/(2*a)+(math.sqrt(b*b-4*a*c))/(2*a)
+    x2 = -b/(2*a)-(math.sqrt(b*b-4*a*c))/(2*a)
+    print(str.format( "此方程有两个不等实根:x1 = {0},x2 = {1}",x1,x2))
+else :
+    # x1 = -b / (2 * a) + ((0math.sqrt(b * b - 4 * a * c)) / (2 * a))*i
+    # x1 =  -b / (2 * a) + (math.sqrt(4 * a * c-b * b )) / (2 * a)
+    real =  -b / (2 * a)
+    image = (math.sqrt(4 * a * c-b * b )) / (2 * a)
+    # x2 = -b / (2 * a) - (math.sqrt(4 * a * c-b * b)) / (2 * a)
+    print(str.format( "此方程有两个不等实根:{0}+ {1}i和{0}-{1}i",real,image))
+======================================================
+n = int(input("请输入一个整数:"))
+s =1
+sum =1
+j=1
+if n<0:
+    # print("请输入非负整数:")
+    n =int(input("请输入非负整数:"))
+elif n==0:
+    print("0!=1")
+for i in range (1,n):
+
+    s=s*i
+while j<n:
+
+    sum=sum*j
+    j = j + 1
+print(str.format("for循环:{0}!={1}",n,s) )
+print(str.format("while循环:{0}!={1}",n,sum) )
+======================================================
+import random
+
+m = random.randint (0,100)
+print("整数1 = ",m)
+# m = int(input("整数a = "))
+n = random.randint (0,100)
+print("整数2 = ",n)
+def gcd(a,b):
+    while b!=0:
+        r = a%b
+        a = b
+        b  = r
+    print("最大公约数是:", a)
+    return a
+
+c = m*n
+# print("最大公约数是:",a)
+print("最小公倍数是:",c/(gcd(m,n)))
